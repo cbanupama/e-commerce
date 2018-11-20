@@ -33,17 +33,17 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         Category::create([
-            'parent_id' => $request->get('parent_id') ?? null,
-            'name' => $request->get('name'),
-            'slug' => str_slug($request->get('name')),
+            'parent_id'   => $request->get('parent_id') ?? null,
+            'name'        => $request->get('name'),
+            'slug'        => str_slug($request->get('name')),
             'is_featured' => $request->get('is_featured') ? (bool)$request->get('is_featured') : false,
-            'is_active' => $request->get('is_active') ? !(bool)$request->get('is_active') : true
+            'is_active'   => $request->get('is_active') ? !(bool)$request->get('is_active') : true
         ]);
 
         return redirect()->route('category.index');
@@ -52,7 +52,7 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -64,7 +64,7 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -77,8 +77,8 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -97,7 +97,7 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

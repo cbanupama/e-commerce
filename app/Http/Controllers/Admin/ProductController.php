@@ -42,14 +42,14 @@ class ProductController extends Controller
         $path = $request->file('image')->store('products', ['disk' => 'public']);
 
         Product::create([
-            'category_id' => $request->get('category_id'),
-            'name' => $request->get('name'),
-            'slug' => str_slug($request->get('name')),
-            'price' => $request->get('price'),
+            'category_id'         => $request->get('category_id'),
+            'name'                => $request->get('name'),
+            'slug'                => str_slug($request->get('name')),
+            'price'               => $request->get('price'),
             'discount_percentage' => $request->get('discount_percentage'),
-            'image' => $path,
-            'size' => $request->get('size'),
-            'color' => $request->get('color')
+            'image'               => $path,
+            'size'                => $request->get('size'),
+            'color'               => $request->get('color')
         ]);
 
         return redirect()->route('product.index');
@@ -77,7 +77,7 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
         $categories = Category::all();
-        return view('admin.product.edit',compact('product','categories'));
+        return view('admin.product.edit', compact('product', 'categories'));
     }
 
     /**

@@ -20,16 +20,13 @@
                             <div class="card mb-4 shadow-sm p-3">
                                 <img class="card-img-top"
                                      src="{{ Storage::url($product->image) }}"
-                                     alt="{{ $product->name }}" style="max-height: 250px;">
+                                     alt="{{ $product->name }}" style="max-height: 150px;">
                                 <div class="card-body">
                                     <h4 class="card-text">{{ $product->name }}</h4>
-                                    <h6>
-                                        <strike>&#8377; {{ $product->price }}</strike>
-                                        &#8377; {{ $product->price - ($product->price / ($product->discount_percentage <= 0 ? 1 : $product->discount_percentage)) }}
-                                    </h6>
+                                    <h6>&#8377; {{ $product->price }}</h6>
                                 </div>
                                 <div class="card-footer">
-                                    <a href="{{ route('item', $product->slug) }}" type="button" class="btn btn-outline-secondary btn-block">Buy Now</a>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary btn-block">Buy Now</button>
                                 </div>
                             </div>
                         </div>

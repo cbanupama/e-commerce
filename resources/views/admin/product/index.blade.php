@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Products</div>
+                    <div class="card-header">Products <a href="{{ route('product.create') }}" class="float-right">Add New</a> </div>
                     <div class="card-body">
                         <table class="table table-bordered">
                             <thead>
@@ -32,7 +32,7 @@
                                     <td>{{ $product->price }}</td>
                                     <td>{{ $product->discount_percentage }}</td>
                                     <td>
-                                        <img src="{{ Storage::url($product->image) }}" alt="{{ $product->name }}"/>
+                                        <img src="{{ Storage::url($product->image) }}" class="img-fluid" style="max-height: 50px;" alt="{{ $product->name }}"/>
                                     </td>
                                     <td>{{ $product->size }}</td>
                                     <td>{{ $product->color }}</td>

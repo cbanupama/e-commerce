@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Category;
 use App\Product;
+use App\ProductImage;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -41,7 +42,7 @@ class ProductController extends Controller
     {
         $path = $request->file('image')->store('products', ['disk' => 'public']);
 
-        Product::create([
+        $product = Product::create([
             'category_id'         => $request->get('category_id'),
             'name'                => $request->get('name'),
             'slug'                => str_slug($request->get('name')),
@@ -51,6 +52,14 @@ class ProductController extends Controller
             'size'                => $request->get('size'),
             'color'               => $request->get('color')
         ]);
+
+        foreach ($request->file('images') as $image) {
+            $path = $image->store('products', ['disk' => 'public']);
+            ProductImage::create([
+                'product_id' => $product->id,
+                'path'       => $path
+            ]);
+        }
 
         return redirect()->route('product.index');
     }
@@ -101,6 +110,16 @@ class ProductController extends Controller
         $product->size = $request->get('size');
         $product->color = $request->get('color');
         $product->save();
+
+        ProductImage::where('product_id', $id)->delete();
+
+        foreach ($request->file('images') as $image) {
+            $path = $image->store('products', ['disk' => 'public']);
+            ProductImage::create([
+                'product_id' => $product->id,
+                'path'       => $path
+            ]);
+        }
 
         return redirect()->route('product.show', $id);
     }

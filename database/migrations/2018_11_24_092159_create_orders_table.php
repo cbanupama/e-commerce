@@ -18,6 +18,8 @@ class CreateOrdersTable extends Migration
             $table->unsignedInteger('user_id');
             $table->string('number');
             $table->decimal('amount', 10, 2);
+            $table->string('delivery_address');
+            $table->string('payment_method');
             $table->string('payment_status');
             $table->timestamps();
 

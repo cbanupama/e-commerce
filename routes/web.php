@@ -8,7 +8,9 @@ Auth::routes();
 
 Route::middleware('auth')->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/checkout', 'CheckoutController@checkout')->name('checkout');
     Route::resource('cart', 'CartController');
+    Route::resource('order', 'OrderController');
 });
 
 

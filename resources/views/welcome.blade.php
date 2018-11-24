@@ -1,16 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <section class="jumbotron text-center">
-        <div class="container">
-            <h1 class="jumbotron-heading">Welcome to {{ config('app.name') }}</h1>
-            <p class="lead text-muted">Browse through our products to find exiting offers.</p>
-            {{--<p>--}}
-            {{--<a href="#" class="btn btn-primary my-2">Today's deals</a>--}}
-            {{--<a href="#" class="btn btn-secondary my-2">Best mobiles phones</a>--}}
-            {{--</p>--}}
-        </div>
-    </section>
+    @include('partials.banner')
     <div class="container">
         <div class="py-5 bg-light">
             <div class="container">

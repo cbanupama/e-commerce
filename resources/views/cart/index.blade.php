@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Shopping Cart</div>
+                    <div class="card-header">Shopping Cart @if(\Illuminate\Support\Facades\Auth::user()->cartItems->count())<a class="pull-right btn btn-primary" href="{{ route('checkout') }}">Checkout</a>@endif</div>
                     <div class="card-body">
                         <table class="table table-bordered">
                             <thead>

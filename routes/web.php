@@ -5,7 +5,11 @@ Route::get('/browse/{categorySlug}', 'WelcomeController@browse')->name('browse')
 Route::get('/item/{productSlug}', 'WelcomeController@item')->name('item');
 
 Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::resource('cart', 'CartController');
+});
 
 
 // Administrator

@@ -15,9 +15,11 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
+    <link href="{{ url('css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
 </head>
 <body>
 <div id="app">
@@ -55,6 +57,9 @@
                             @endif
                         </li>
                     @else
+                        <li class="nav-item">
+                            <a href="{{ route('cart.index') }}"> <span class="fa fa-shopping-cart fa-2x"></span> {{ \Illuminate\Support\Facades\Auth::user()->cartItems->count() }}</a>
+                        </li>
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

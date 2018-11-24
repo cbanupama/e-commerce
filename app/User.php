@@ -27,4 +27,22 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token'
     ];
+
+
+    public function cartItems()
+    {
+        return $this->hasMany(Cart::class);
+    }
+
+    public function getCartTotalAttribute()
+    {
+        $total = 0;
+        foreach ($this->cartItems as $item) {
+            $total += $item->product->discounted_price * $item->quantity;
+        }
+
+        return $total;
+    }
+
+
 }

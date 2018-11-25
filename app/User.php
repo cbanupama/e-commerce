@@ -44,5 +44,13 @@ class User extends Authenticatable
         return $total;
     }
 
+    public function roles()
+    {
+        return $this->hasMany(Role::class);
+    }
 
+    public function hasRole($role)
+    {
+        return $this->roles()->where('name', $role)->count() > 0;
+    }
 }

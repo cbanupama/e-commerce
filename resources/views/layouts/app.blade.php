@@ -57,8 +57,19 @@
                             @endif
                         </li>
                     @else
+                        @if(Auth::user()->hasRole('admin'))
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('category.index') }}">Categories</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('product.index') }}">Products</a>
+                            </li>
+                            @endif
                         <li class="nav-item">
-                            <a href="{{ route('cart.index') }}"> <span class="fa fa-shopping-cart fa-2x"></span> {{ \Illuminate\Support\Facades\Auth::user()->cartItems->count() }}</a>
+                            <a class="nav-link" href="{{ route('order.index') }}">My Orders</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-primary" href="{{ route('cart.index') }}"> <span class="fa fa-shopping-cart"></span> {{ \Illuminate\Support\Facades\Auth::user()->cartItems->count() }}</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"

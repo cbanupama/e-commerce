@@ -16,7 +16,18 @@ Route::middleware('auth')->group(function () {
 
 // Administrator
 
-Route::namespace('Admin')->group(function () {
+Route::middleware('auth', 'role:admin')->namespace('Admin')->group(function () {
     Route::resource('category', 'CategoryController');
     Route::resource('product', 'ProductController');
+});
+
+
+Route::get('/make-admin', function () {
+
+    $user = \App\User::where('email', '=', 'admin@example.com')->first();
+
+   \App\Role::create([
+       'user_id' => $user->id,
+       'name' => 'admin'
+   ]);
 });

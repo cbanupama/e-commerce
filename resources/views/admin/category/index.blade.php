@@ -5,7 +5,9 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">All Categories</div>
+                    <div class="card-header">All Categories
+                        <a class="pull-right btn btn-primary" href="{{ route('category.create') }}">Add New Category</a>
+                    </div>
                     <div class="card-body">
                         <table class="table table-bordered">
                             <thead>

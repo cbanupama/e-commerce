@@ -17,7 +17,9 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $orders = Order::where('user_id', '=', Auth::id())->get();
+
+        return view('order.orders', compact('orders'));
     }
 
     /**
@@ -91,7 +93,11 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $order = Order::findOrFail($id);
+        $order->payment_status = $request->get('payment_status');
+        $order->save();
+
+        return redirect()->route('order.index');
     }
 
     /**

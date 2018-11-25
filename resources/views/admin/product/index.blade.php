@@ -5,7 +5,9 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Products <a href="{{ route('product.create') }}" class="float-right">Add New</a> </div>
+                    <div class="card-header">Products
+                        <a class="pull-right btn btn-primary" href="{{ route('product.create') }}">Add New Product</a>
+                    </div>
                     <div class="card-body">
                         <table class="table table-bordered">
                             <thead>

@@ -13,8 +13,8 @@
                                      src="{{ Storage::url($product->image) }}"
                                      alt="{{ $product->name }}" style="max-height: 250px;">
                                 <div class="card-body">
-                                    <h4 class="card-text">{{ $product->name }}</h4>
-                                    <h1 class="p-3">
+                                    <h4 class="card-text text-danger">{{ $product->name }}</h4>
+                                    <h4 class="p-3 text-primary">
                                         Price: <br>
                                         @if((int)$product->discount_percentage > 0)
                                             <strike>&#8377; {{ $product->price }}</strike>
@@ -22,7 +22,7 @@
                                         @else
                                             <strong>&#8377; {{ $product->price }}</strong>
                                         @endif
-                                    </h1>
+                                    </h4>
                                 </div>
                                 <div class="card-footer">
                                     <a href="{{ route('item', $product->slug) }}" type="button"

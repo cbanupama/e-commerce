@@ -25,7 +25,7 @@
                             @foreach($categories as $category)
                                 <tr>
                                     <td>{{ $category->id }}</td>
-                                    <td>{{ $category->parent_id }}</td>
+                                    <td>{{ $category->parent ? $category->parent->name : '' }}</td>
                                     <td>{{ $category->name }}</td>
                                     <td>{{ $category->slug }}</td>
                                     <td>

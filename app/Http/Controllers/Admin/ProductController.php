@@ -99,7 +99,11 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         $product = Product::findOrFail($id);
-        $path = $request->file('image')->store('products', ['disk' => 'public']);
+        if($request->hasFile('image')) {
+            $path = $request->file('image')->store('products', ['disk' => 'public']);
+        } else {
+            $path = $product->image;
+        }
 
         $product->category_id = $request->get('category_id') ?? null;
         $product->name = $request->get('name');
@@ -113,12 +117,14 @@ class ProductController extends Controller
 
         ProductImage::where('product_id', $id)->delete();
 
-        foreach ($request->file('images') as $image) {
-            $path = $image->store('products', ['disk' => 'public']);
-            ProductImage::create([
-                'product_id' => $product->id,
-                'path'       => $path
-            ]);
+        if($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $path = $image->store('products', ['disk' => 'public']);
+                ProductImage::create([
+                    'product_id' => $product->id,
+                    'path'       => $path
+                ]);
+            }
         }
 
         return redirect()->route('product.show', $id);

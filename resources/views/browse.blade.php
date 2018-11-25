@@ -14,7 +14,15 @@
                                      alt="{{ $product->name }}" style="max-height: 150px;">
                                 <div class="card-body">
                                     <h4 class="card-text">{{ $product->name }}</h4>
-                                    <h6>&#8377; {{ $product->price }}</h6>
+                                    <h4 class="p-3 text-primary">
+                                        Price: <br>
+                                        @if((int)$product->discount_percentage > 0)
+                                            <strike>&#8377; {{ $product->price }}</strike>
+                                            &#8377; {{ $product->discounted_price }}
+                                        @else
+                                            <strong>&#8377; {{ $product->price }}</strong>
+                                        @endif
+                                    </h4>
                                 </div>
                                 <div class="card-footer">
                                     <a href="{{ route('item', $product->slug) }}" type="button"

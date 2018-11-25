@@ -11,7 +11,7 @@
                             <div class="card mb-4 shadow-sm p-3">
                                 <img class="card-img-top img-fluid"
                                      src="{{ Storage::url($product->image) }}"
-                                     alt="{{ $product->name }}" style="max-height: 250px;">
+                                     alt="{{ $product->name }}" style="height: 200px;">
                                 <div class="card-body">
                                     <h4 class="card-text text-danger">{{ $product->name }}</h4>
                                     <h4 class="p-3 text-primary">

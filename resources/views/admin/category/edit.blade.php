@@ -17,7 +17,7 @@
 
                                 <div class="col-md-6">
                                     <select id="parent_id" class="form-control" name="parent_id">
-                                        <option value="null">Select parent category</option>
+                                        <option value="">Select parent category</option>
                                         @foreach($categories as $category)
                                             <option value="{{ $category->id }}" {{ $category->parent_id === $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
                                         @endforeach

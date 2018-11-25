@@ -11,6 +11,11 @@ class Product extends Model
         'category_id', 'name', 'slug', 'price', 'discount_percentage', 'image', 'size', 'color'
     ];
 
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */

@@ -37,10 +37,29 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav mr-auto">
-                    @foreach(\App\Category::where('is_featured', true)->get() as $category)
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('browse', $category->slug) }}">{{ $category->name }}</a>
-                        </li>
+                    @foreach(\App\Category::where('parent_id', '=', null)->get() as $category)
+                        @if($category->children->count())
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="{{ route('browse', $category->slug) }}"
+                                   id="{{ $category->slug }}" role="button" data-toggle="dropdown" aria-haspopup="true"
+                                   aria-expanded="false">
+                                    {{ $category->name }}
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="{{ $category->slug }}">
+                                    <a class="dropdown-item"
+                                       href="{{ route('browse', $category->slug) }}">{{ $category->name }}</a>
+                                    @foreach($category->children as $child)
+                                        <a class="dropdown-item"
+                                           href="{{ route('browse', $child->slug) }}">{{ $child->name }}</a>
+                                    @endforeach
+                                </div>
+                            </li>
+                        @else
+                            <li class="nav-item">
+                                <a class="nav-link"
+                                   href="{{ route('browse', $category->slug) }}">{{ $category->name }}</a>
+                            </li>
+                        @endif
                     @endforeach
                 </ul>
 
@@ -64,12 +83,14 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('product.index') }}">Products</a>
                             </li>
-                            @endif
+                        @endif
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('order.index') }}">My Orders</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-primary" href="{{ route('cart.index') }}"> <span class="fa fa-shopping-cart"></span> {{ \Illuminate\Support\Facades\Auth::user()->cartItems->count() }}</a>
+                            <a class="nav-link text-primary" href="{{ route('cart.index') }}"> <span
+                                        class="fa fa-shopping-cart"></span> {{ \Illuminate\Support\Facades\Auth::user()->cartItems->count() }}
+                            </a>
                         </li>
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
